@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<title>TouchEvent</title>
+	<style>
+	#touchElement{
+		width:100px;
+		height:33px;
+		background-color:green;
+	}
+	</style>
+</head>
+<body>
+	<div id="touchElement"></div>
+
+	<script>
+		var element = document.getElementById('touchElement');
+
+		var startTouch;
+
+		var touchStart = function(evt){
+			console.log('touchstart change ' + evt.changedTouches.length + ' points.');
+			var touchEvt = startTouch = evt.changedTouches.item(0);
+
+			console.info(evt.type);
+			console.log('x:' + touchEvt.clientX + ',y:' + touchEvt.clientY);
+		};
+
+		var touchEnd = function(evt){
+			var touchEvt = evt.changedTouches.item(0);
+			if(touchEvt.target == startTouch.target){
+				console.log('touchend \'s target equal touchstart \'s target')
+			}
+			if(evt.touches.length == 0){
+				console.log('touchend \'s touches is empty')
+			}
+		};
+
+		var touchMove = function(evt){
+			var touchEvt = evt.changedTouches.item(0);
+			console.log('x:' + touchEvt.clientX + ',y:' + touchEvt.clientY);
+		};
+
+		element.addEventListener('touchstart', touchStart);
+		element.addEventListener('touchend', touchEnd);
+		element.addEventListener('touchmove', touchMove);
+	</script>
+</body>
+</html>

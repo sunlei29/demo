@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style>
+            .block{
+                width:100px;
+                height:20px;
+                display:inline-block;
+                *display:inline;
+                margin:5px;
+            }
+            .hex{
+                height:14px;
+                line-height:14px;
+                font:12px bold Arial;
+                text-align:center;
+                margin-top:25px;
+            }
+        </style>
+	<head>
+	<body>
+        <script>
+        function toHex(str){
+            var hex = parseInt(str,16);
+            if(hex <= parseInt("0xF",16)){
+                return '#' + "00000" + str;
+            }
+            else if(hex <= parseInt("0xFF",16)){
+                return '#' + "0000" + str;
+            }
+            else if(hex <= parseInt("0xFFF",16)){
+                return '#' + "000" + str;
+            }
+            else if(hex <= parseInt("0xFFFF",16)){
+                return '#' + "00" + str;
+            }
+            else if(hex <= parseInt("0xFFFFF",16)){
+                return '#' + "0" + str;
+            }
+            else if(hex <= parseInt("0xFFFFFF",16)){
+                return '#' + str;
+            }
+        }
+        function create(color){
+            var el = document.createElement("div"); el.className = "block";
+            el.style.background = color;
+            var hex = document.createElement("div");
+            hex.className = "hex";
+            hex.innerHTML = color;
+            el.appendChild(hex);
+            return el;
+        }
+
+        var len = parseInt("0xF",16);
+        var step = parseInt("0xFF",16); 
+        var start = parseInt("0x0", 16);
+        var end = parseInt("0xFFFFFF", 16);
+        
+        function run(cur){
+            setTimeout(function(){
+                var placeholder = document.createDocumentFragment();
+                var n = 0;
+                while(cur <= end && n<len){
+                    var hex = toHex(cur.toString(16));
+                    placeholder.appendChild(create(hex));
+                    cur += step;
+                    n++;
+                }
+                document.body.appendChild(placeholder);
+                document.body.scrollTop += 60;
+
+                if(cur < end){
+                    run(cur);
+                }
+                else if(cur == end){
+                    var hex = toHex(cur.toString(16));
+                    document.body.appendChild(create(hex));
+                }
+            },1000);
+        }
+
+        run(start);
+        </script>
+	</body>
+</html>

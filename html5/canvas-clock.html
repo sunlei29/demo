@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body style="text-align:center;">
+        <canvas id="myCanvas" width="800" height="600" style="margin-left:auto;margin-right:auto;"></canvas>
+        <script>
+		var myCanvas = document.getElementById("myCanvas");
+		var context = myCanvas.getContext("2d");
+
+		var s = 0, m = 0, h = 0;
+		var date = new Date();
+		var date = new Date(1900,1,1,22,29,30);
+		var hours = date.getHours();
+		if(hours > 12){
+			hours = hours - 12;    
+		}
+		var minutes = date.getMinutes();
+		var seconds = date.getSeconds();
+
+		s = (seconds / 60) * 2 * Math.PI;
+		m = (minutes / 60) * 2 * Math.PI + (seconds / 60) * Math.PI / 30;
+		h = (hours / 12) * 2 * Math.PI + (minutes / 60) * Math.PI / 6;
+
+		function clear(){
+			context.clearRect(0,0,context.canvas.width,context.canvas.height);
+		}
+
+		setInterval(function(){
+				clear();
+
+				var x = 300,
+				y = 300,
+				r = 200;
+
+				//draw a circle
+				context.beginPath();
+				context.arc(x,y,r,0,Math.PI*2);
+				context.strokeStyle = "black";
+				context.lineWidth = 5;
+				context.stroke();
+
+				// draw num
+				context.font = "16px Arial";
+				context.fillStyle = "black";
+				context.textAlign = "center";
+				for(var i=1;i<=12;i++){
+				context.fillText(i,x + 0.92 * r * Math.sin((i/12) * 2 * Math.PI), y - 0.92 * r *  Math.cos((i/12) * 2 * Math.PI));   
+				}
+
+				// second
+				context.beginPath();
+				context.moveTo(x,y);
+				context.lineTo(x + 0.9 * r * Math.sin(s), y - 0.9 * r * Math.cos(s));
+				context.strokeStyle = "black";
+				context.lineWidth = 2;
+				context.lineCap = "round";
+				context.stroke();
+
+				// minute
+				context.beginPath();
+				context.moveTo(x,y);
+				context.lineTo(x + 0.8 * r * Math.sin(m), y - 0.8 * r * Math.cos(m));
+				context.strokeStyle = "green";
+				context.lineWidth = 10;
+				context.lineCap = "round";
+				context.stroke();
+
+				// hour
+				context.beginPath();
+				context.moveTo(x,y);
+				context.lineTo(x + 0.5 * r * Math.sin(h), y - 0.5 * r * Math.cos(h));
+				context.strokeStyle = "blue";
+				context.lineWidth = 20;
+				context.lineCap = "round";
+				context.stroke();
+
+				context.beginPath();
+				context.arc(x,y,r/10,0,Math.PI*2);
+				context.fillStyle = "red";
+				context.fill();
+
+				s += 2*Math.PI / 60; 
+				m += 2*Math.PI / 3600; 
+				h += 2*Math.PI / 216000;
+		},1000);
+
+		</script>
+    </body>
+</html>
