@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>CSS选择器</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		.title{
+			font-size: 20px;
+			font-family: Microsoft Yahei,Consonla;
+		}
+	</style>
+</head>
+<body>
+	<p class="title">层次选择器</p>
+	<style>
+		div{
+			margin:5px;
+			padding:5px;
+			border:1px solid #ccc;
+		}
+		div div{
+			background-color:orange;
+		}
+		body > div{
+			background-color: green;
+		}
+		.active ~ div{
+			background-color: red;
+		}
+		.active + div{
+			background-color: lime;
+		}
+	</style>
+	<div class="active">1</div>
+	<div>2</div>
+	<div>3</div>
+	<div>4
+		<div>5</div>
+		<div>6</div>
+	</div>
+	<div>7</div>
+
+	<p class="title">动态伪类选择器</p>
+	<style>
+	.link:link{
+		color:black;
+	}
+	.link:visited{
+		color:green;
+	}
+	#contact:target{
+		background-color: green;
+	}
+	#contact:active{
+		color:orange;
+	}
+	.link:hover{
+		font-size:4em;
+	}
+	.link:focus{
+		font-size:2em;
+	}
+	</style>
+	<a class="link" href="#contact">锚点</a>
+	<div id="contact">
+		随便写点什么吧
+	</div>
+
+	<p class="title">结构伪类选择器</p>
+	<style>
+	ul{
+		margin: 50px auto;
+		list-style: none outside none;
+	}
+	li{
+		display: inline-block;
+		margin: 5px;
+		padding: 5px;
+		background: #000;
+		color:#fff;
+		border-radius: 50px;
+		width: 50px;
+		text-align: center; 	
+	}
+	ul > li:first-child{
+		background-color: green;
+	}
+	ul > li:last-child{
+		background-color: red;
+	}
+	ul > li:nth-child(3){
+		background-color:yellow;
+	}
+	ul > li:nth-child(2n){
+		background-color: blue;
+	}
+	ul > li:nth-child(-n+4){
+		background-color: orange;
+	}
+	body > p:nth-of-type(3){
+		background-color: lime;
+	}
+	ul > li:first-of-type{
+		background-color: cornflowerblue;
+	}
+	#post>p:only-child{
+		background-color: cornflowerblue;
+	}
+	div:empty{
+		background-color: cornflowerblue;
+	}
+	</style>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+		<li>10</li>
+		<li>11</li>
+		<li>12</li>
+		<li>13</li>
+		<li>14</li>
+		<li>15</li>
+		<li>16</li>
+		<li>17</li>
+		<li>18</li>
+		<li>19</li>
+		<li>20</li>
+	</ul>
+	<div id="post">
+		<p>1</p>
+		<p>2</p>
+	</div>
+	<div id="post">
+		<p>1</p>
+	</div>
+	<div></div>
+
+	<p class="title">伪元素</p>
+	<style>
+		.article::first-letter{
+			font-size:2em;
+		}
+		.article::first-line{
+			font-size:1.5em;
+		}
+		.article::before{
+			background-color: orange;
+			content: "aa";
+		}
+		.article::after{
+			content: "aa";
+			background-color: lime;
+		}
+		.article::selection{
+			background-color: blue;
+		}
+	</style>
+	<div class="article">
+		Test content
+	</div>
+</body>
+</html>
