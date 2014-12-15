@@ -1,21 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>instanceof VS isPrototype</title>
-</head>
-<body>
-<p id="log"></p>
-<script>
-var console = {
-log : function(msg){
-          var p = document.getElementById("log");
-          p.innerHTML += msg.toString();
-          p.innerHTML += '<br/>';
-      }
-};
-
 /*
    function A(){}
    function B(){}
@@ -50,9 +32,3 @@ console.log(C.prototype.isPrototypeOf(a));
 var d = {};
 var e = Object.create(d,{});
 console.log(d.isPrototypeOf(e));
-
-
-
-</script>
-</body>
-</html>
