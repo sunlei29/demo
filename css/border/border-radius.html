@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>border-radius</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		.title{
+			font-size: 20px;
+			font-family: Microsoft Yahei,Consonla,Arial;
+		}
+		div{
+			margin:30px auto;
+			width: 200px;
+			height: 200px;
+			line-height: 200px;
+			background-color: #FFA07A;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<style>
+	.border-radius{
+		border-radius: 50px / 50px;
+	}
+	.border-radius-circle{
+		border-radius: 100px;
+	}
+	.border-radius-half-circle{
+		width:400px;
+		border-radius: 200px 200px 0px 0px; 
+	}
+	.border-radius-1_4-circle{
+		border-radius:200px 0px 0px 0px;
+	}
+	.border-radius-oval{
+		width:400px;
+		border-radius: 200px / 100px;
+	}
+	.border-radius-four{
+		border-radius: 50px 25px 50px 25px/ 50px 25px 50px 25px;
+	}
+	.lower-than-border{
+		border:60px solid #FFB6C1;
+	}
+	.higher-than-border{
+		border:20px solid #FFB6C1;
+	}
+	</style>
+
+	<div class="border-radius">set value</div>
+
+	<div class="border-radius-circle">circle</div>
+
+	<div class="border-radius-half-circle">half circle</div>
+
+	<div class="border-radius-1_4-circle">1/4 circle</div>
+
+	<div class="border-radius-oval">oval</div>
+
+	<div class="border-radius-four">set four different</div>
+
+	<div class="border-radius lower-than-border">lower than border</div>
+
+	<div class="border-radius higher-than-border">higher than border</div>
+</body>
+</html>
